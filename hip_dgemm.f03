@@ -7,9 +7,9 @@ program hip_dgemm
 
   implicit none
 
-   integer, parameter :: m = 46340
-   integer, parameter :: k = 46340
-   integer, parameter :: n = 46340
+  integer, parameter :: m = 46340
+  integer, parameter :: k = 46340
+  integer, parameter :: n = 46340
 
   integer(kind(HIPBLAS_OP_N)), parameter :: op1 = HIPBLAS_OP_N
   integer(kind(HIPBLAS_OP_N)), parameter :: op2 = HIPBLAS_OP_N
@@ -26,7 +26,6 @@ program hip_dgemm
 
   type(c_ptr) :: handle = c_null_ptr
 
-  integer, parameter :: bytes_per_element = 8
   integer(c_size_t) :: Nabytes, Nbbytes, Ncbytes
 
   integer :: i
@@ -35,9 +34,9 @@ program hip_dgemm
   size_b = n * k;
   size_c = m * n;
 
-  Nabytes = size_a*bytes_per_element
-  Nbbytes = size_b*bytes_per_element
-  Ncbytes = size_c*bytes_per_element
+  Nabytes = size_a*8_c_size_t
+  Nbbytes = size_b*8_c_size_t
+  Ncbytes = size_c*8_c_size_t
 
   ! Host 
   allocate(hA(size_a))
